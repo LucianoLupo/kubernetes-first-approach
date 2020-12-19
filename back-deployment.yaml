@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+  name: backend-deployment
+  labels:
+    app: backend-deployment
+
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-pod
+
+  template:
+    metadata:
+      name: backend-pod
+      labels:
+        app: backend-pod
+
+    spec:
+      containers:
+        - name: backend-container
+          image: k8s-first-app-backend:0.0.1
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 3000
